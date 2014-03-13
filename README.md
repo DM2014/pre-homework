@@ -10,14 +10,11 @@ pre-homework
 
 ## Install
 
+You may skip the `git` part and just download it.
+
 ```shell
 git clone git@github.com:DM2014/pre-homework.git
 cd pre-homework
-```
-
-Or you can just download and unpack it.
-
-```shell
 cabal sandbox init
 cabal install --only-dependencies
 ```
