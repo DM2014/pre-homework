@@ -9,3 +9,6 @@ cabal-dev
 cabal.sandbox.config
 .cabal-sandbox
 data
+
+pre-homework.prof
+pre-homework.prof.html
