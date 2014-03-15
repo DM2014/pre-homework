@@ -12,3 +12,6 @@ data
 
 pre-homework.prof
 pre-homework.prof.html
+*.hp
+*.ps
+*.aux

@@ -17,22 +17,22 @@ main = do
     content <- BL.getContents
 
     let userTable     = accumulate fst (parseCheckIn content)
-    let locationTable = accumulate snd (parseCheckIn content)
+    --let locationTable = accumulate snd (parseCheckIn content)
 
     putStrLn "top 50 users:"
     print (top50 userTable)
-    putStrLn "top 50 locations:"
-    print (top50 locationTable)
+    --putStrLn "top 50 locations:"
+    --print (top50 locationTable)
 
-    putStrLn "overall mean of users:"
-    print (mean userTable)
-    putStrLn "overall variance of users:"
-    print (variance userTable)
+    --putStrLn "overall mean of users:"
+    --print (mean userTable)
+    --putStrLn "overall variance of users:"
+    --print (variance userTable)
 
-    putStrLn "overall mean of locations:"
-    print (mean locationTable)
-    putStrLn "overall variance of locations:"
-    print (variance locationTable)
+    --putStrLn "overall mean of locations:"
+    --print (mean locationTable)
+    --putStrLn "overall variance of locations:"
+    --print (variance locationTable)
 
 
 -- Parse and make a list of CheckIns
