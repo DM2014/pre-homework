@@ -1,8 +1,8 @@
 module Main where
 
 import              Data.Ord (Down(..))
-import              Data.List (sortBy)
-import qualified    Data.HashMap.Lazy as H
+import              Data.List (sortBy, foldl')
+import qualified    Data.HashMap.Strict as H
 import              Data.Hashable (Hashable)
 import qualified    Data.ByteString.Lazy as BL
 import              Data.ByteString.Lazy (ByteString)
@@ -44,7 +44,7 @@ parseCheckIn = map (toLoc . splitWords) . filter (not . BL.null) . splitLines
 
 -- Builds a table which counts the occurence of items with first argument being the selector
 accumulate :: (Eq a, Hashable a) => (CheckIn -> a) -> [CheckIn] -> Table a
-accumulate f = foldr (\a table -> add1 (f a) table) H.empty
+accumulate f = foldl' (\table a -> add1 (f a) table) H.empty
     where   add1 key = H.insertWith (\_ n -> n + 1) key 1
 
 top50 :: Ord a => Table a -> [(a, Int)]
