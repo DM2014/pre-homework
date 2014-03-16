@@ -10,7 +10,6 @@ import              Data.List (sortBy, foldl')
 import qualified    Data.HashMap.Strict as H
 import              Data.Hashable (Hashable)
 import qualified    Data.ByteString.Lazy as BL
-import qualified    Data.ByteString.Lazy.Char8 as BLC
 import              Data.ByteString.Lazy (ByteString)
 
 type Table a = H.HashMap a Int
@@ -42,9 +41,7 @@ parseCheckIn :: ByteString -> [CheckIn]
 parseCheckIn = map (toLoc . splitWords) . filter (not . BL.null) . splitLines 
     where   splitLines = BL.split 0xa
             splitWords = BL.split 0x9
-            --toLoc xs = (head xs, last xs)
             toLoc xs = (parseDemical $ head xs, parseDemical $ last xs)
-            --toLoc xs = (read . BLC.unpack $ head xs, read . BLC.unpack $ last xs)
 
 -- Accumulates the occurence of items
 accumulate :: (Eq a, Hashable a) => a -> Table a -> Table a

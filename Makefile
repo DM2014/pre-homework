@@ -1,6 +1,6 @@
 p:
 	cabal build
-	cat data/loc.txt | time ./dist/build/pre-homework/pre-homework +RTS -K1000m -H500m -sstderr -p -RTS
+	cat data/loc.txt | time ./dist/build/pre-homework/pre-homework +RTS -K1000m -H500m -sstderr -RTS
 
 h:
 	cabal build
