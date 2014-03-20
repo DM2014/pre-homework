@@ -10,7 +10,6 @@ import              Data.List (sortBy, foldl')
 import qualified    Data.HashMap.Strict as H
 import              Data.Hashable (Hashable)
 import qualified    Data.ByteString.Lazy as BL
-import qualified    Data.ByteString.Lazy.Char8 as BLC
 import              Data.ByteString.Lazy (ByteString)
 
 type Table a = H.HashMap a Int
