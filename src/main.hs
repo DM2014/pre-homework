@@ -59,10 +59,15 @@ top50 = take 50 . sortBy occurence . H.toList
 
 mean :: Table a -> Double
 mean table = fromIntegral summation / fromIntegral size
-    where   summation = H.foldr (+) 0 table
+    where   summation = H.foldl' (+) 0 table
+            size = H.size table
+
+moment2 :: Table a -> Double
+moment2 table = fromIntegral summation / fromIntegral size
+    where   summation = H.foldl' (\acc n -> acc + n * n) 0 table
             size = H.size table
 
 variance :: Table a -> Double
-variance table = fromIntegral a - b * b
-    where   a = H.foldr (\acc n -> acc + n * n) 0 table
+variance table = a - b * b
+    where   a = moment2 table
             b = mean table
