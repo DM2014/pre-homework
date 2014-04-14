@@ -19,3 +19,7 @@ h0:
 t:
 	profiteur pre-homework.prof
 	open pre-homework.prof.html 
+
+a:
+	cabal build
+	cat data/data | ./dist/build/pre-homework/pre-homework +RTS -K2000m -H500m -RTS

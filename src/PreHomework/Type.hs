@@ -1,5 +1,7 @@
 module PreHomework.Type where
 
-type Loc = Int
-type User = Int
-type CheckIn = (User, Loc)
+import              Data.ByteString (ByteString)
+
+type ProductID = ByteString
+type UserID = ByteString
+type Product = (UserID, ProductID)
