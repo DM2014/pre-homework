@@ -4,4 +4,4 @@ import              Data.ByteString (ByteString)
 
 type ProductID = ByteString
 type UserID = ByteString
-type Product = (UserID, ProductID)
+data Product = Product UserID ProductID deriving Show

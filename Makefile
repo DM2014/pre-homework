@@ -22,4 +22,8 @@ t:
 
 a:
 	cabal build
-	cat data/data | ./dist/build/pre-homework/pre-homework +RTS -K2000m -H500m -RTS
+	cat data/data | time ./dist/build/pre-homework/pre-homework +RTS -K2000m -H500m -RTS
+	# less output
+b:
+	cabal build
+	cat /media/banacorn/8258dc47-a771-439e-9a7c-04c04ddf9ccf/d/all.txt | time ./dist/build/pre-homework/pre-homework +RTS -K2000m -H500m -RTS

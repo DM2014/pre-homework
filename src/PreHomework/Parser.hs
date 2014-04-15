@@ -5,15 +5,22 @@ module PreHomework.Parser where
 import              PreHomework.Type
 
 import              Control.Monad 
+import              Control.Monad.Trans.Resource
 import              Data.Attoparsec.ByteString.Lazy
+import              Data.Monoid ((<>))
 import              Data.ByteString (ByteString)
-import qualified    Data.ByteString.Lazy as BL
 import              Data.Conduit
 import              Data.Conduit.Attoparsec
 import              Prelude hiding (product, take)
 
-parserConduit :: Conduit ByteString IO (PositionRange, [Product])
-parserConduit = conduitParser (many' section)
+parserConduit :: Conduit ByteString (ResourceT IO) ByteString
+parserConduit = do
+    conduitParserEither section =$= awaitForever go
+    where   go (Left s) = error $ show s
+            go (Right (_, p)) = yield $ showProduct p <> "\n"
+
+showProduct :: Product -> ByteString
+showProduct (Product u p) = u <> " " <> p
 
 line :: Parser ByteString
 line = do
@@ -37,4 +44,4 @@ section = do
     userID <- user
     replicateM_ 6 dropLine
     choice [dropLine, endOfInput]
-    return (productID, userID)
+    return (Product userID productID)
