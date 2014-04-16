@@ -13,11 +13,11 @@ import              Data.Conduit
 import              Data.Conduit.Attoparsec
 import              Prelude hiding (product, take)
 
-parserConduit :: Conduit ByteString (ResourceT IO) ByteString
+parserConduit :: Conduit ByteString (ResourceT IO) Product
 parserConduit = do
     conduitParserEither section =$= awaitForever go
     where   go (Left s) = error $ show s
-            go (Right (_, p)) = yield $ showProduct p <> "\n"
+            go (Right (_, p)) = yield p
 
 showProduct :: Product -> ByteString
 showProduct (Product u p) = u <> " " <> p
