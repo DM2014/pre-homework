@@ -12,12 +12,10 @@ import qualified    Data.Set as Set
 import qualified    Data.ByteString as B
 import              Data.ByteString (ByteString)
 import              Control.Monad.Trans.Resource
-import              Control.Monad.IO.Class
 import              Data.Monoid ((<>))
 
 import              Data.Conduit
 import qualified    Data.Conduit.Binary as CB
-import qualified    Data.Conduit.List as CL
 import              System.IO (stdin)
 
 type Table a = H.HashMap UserID a
@@ -25,7 +23,7 @@ type ItemSet = Set ProductID
 
 main :: IO ()
 main = do
-    --sampleData 100000
+    --sampleData 10000
     runResourceT $ CB.sourceHandle stdin $$ parserConduit =$= filterUnknown =$= accumulateProduct H.empty =$= toByteString =$ CB.sinkFile "output"
 
 
