@@ -1,6 +1,6 @@
 p:
 	cabal build
-	cat data/loc.txt | time ./dist/build/pre-homework/pre-homework +RTS -K1000m -H500m -sstderr -RTS
+	at /media/banacorn/8258dc47-a771-439e-9a7c-04c04ddf9ccf/d/all.txt | time ./dist/build/pre-homework/pre-homework +RTS -K1000m -H500m -sstderr -RTS
 
 h:
 	cabal build
